@@ -66,4 +66,43 @@ $("button").on("click", function () {
 
             });
         });
+    // Function for displaying movie data
+    function makeBtn() {
+
+        // Deleting the movies prior to adding new movies
+        // (this is necessary otherwise we will have repeat buttons)
+        $(".gifbox").empty();
+
+        // Looping through the array of movies
+        for (var i = 0; i < topics.length; i++) {
+
+            var b = $("<button>");
+            b.addClass("");
+            // Adding a data-attribute
+            b.attr("data-subject", topics[i]);
+            // Providing the initial button text
+            b.text(topics[i]);
+            // Adding the button to the HTML
+            $(".gifbox").append(b);
+        }
+    }
+
+    // This function handles events where one button is clicked
+    $("#gif-input2).on("click", function (event) {
+        // Preventing the buttons default behavior when clicked (which is submitting a form)
+        event.preventDefault();
+        // This line grabs the input from the textbox
+        var subbie = $("#gif-input").val().trim();
+
+        // Adding the movie from the textbox to our array
+        topics.push(subbie);
+
+        // Calling renderButtons which handles the processing of our movie array
+        makeBtn();
+
+    });
+
+    $(document).on("click", ".", alertMovieName);
+
+    makeBtn();
 }); 
