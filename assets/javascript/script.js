@@ -1,26 +1,28 @@
 $("button").on("click", function () {
 
-    var topics = ["mathematics", "biology", "physics", "chemistry", "psychology", "philosophy", "history", "english"];
+    var topics = ["mathematics", "biology", "physics", "chemistry"];
 
     // Grabbing and storing the data-animal property value from the button
     var math = $(this).attr("data-math");
     var biology = $(this).attr("data-biology");
     var physics = $(this).attr("data-physics");
     var chemistry = $(this).attr("data-chemistry");
-    var psychology = $(this).attr("data-psychology");
-    var philosophy = $(this).attr("data-philosophy");
-    var history = $(this).attr("data-history");
-    var english = $(this).attr("data-english");
+
+    $("button").on("click", function() {
+        // Grabbing and storing the data-animal property value from the button
+        var subject = $(this).attr("data-subject");
 
     // Constructing a queryURL using the subject name
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        subjects + "&api_key=lP1MQYDLbYmyDynRQ563oVNiaQ4IkVFY";
+    var queryURL = "https://api.giphy.com/vanimal1/gifs/search?q=" +
+        subject + "&api_key=lP1MQYDLbYmyDynRQ563oVNiaQ4IkVFY";
+    });
 
     // Performing an AJAX request with the queryURL
     $.ajax({
         url: queryURL,
         method: "GET"
     })
+    console.log("works!")
         // After data comes back from the request
         .then(function (response) {
             console.log(queryURL);
@@ -41,17 +43,17 @@ $("button").on("click", function () {
                 var image = $("<img>");
 
                 //sets src attr of img to property pulled off the result item//
-                image.attr("src", resulst[a].images.fixed_height.url);
+                image.attr("src", results[a].images.fixed_height.url);
 
                 //append text and img to the subjectDiv//
                 subjectDiv.append(text);
                 subjectDiv.append(image);
 
                 //prepends new div to index for specified div//
-                $(".gifbox").prepend(subjectDiv);
+                $("#btnDump").prepend(subjectDiv);
             }
 
-            $("gifbox").on("click", function () {
+            $(".gifbox").on("click", function () {
                 var state = $(this).attr("data-state");
 
                 if (state === "still") {
@@ -87,8 +89,8 @@ $("button").on("click", function () {
         }
     }
 
-    // This function handles events where one button is clicked
-    $("#gif-input2).on("click", function (event) {
+
+    $("#gif-input2").on("click", function(event) {
         // Preventing the buttons default behavior when clicked (which is submitting a form)
         event.preventDefault();
         // This line grabs the input from the textbox
@@ -100,9 +102,9 @@ $("button").on("click", function () {
         // Calling renderButtons which handles the processing of our movie array
         makeBtn();
 
-    });
+      });
 
-    $(document).on("click", ".", alertMovieName);
 
-    makeBtn();
-}); 
+
+    
+    }); 
