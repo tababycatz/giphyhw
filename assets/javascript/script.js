@@ -1,20 +1,19 @@
 $("button").on("click", function () {
 
-    var topics = ["mathematics", "biology", "physics", "chemistry"];
+    var topics = ["cat", "mouse", "dog", "hamster"];
 
     // Grabbing and storing the data-animal property value from the button
-    var math = $(this).attr("data-math");
-    var biology = $(this).attr("data-biology");
-    var physics = $(this).attr("data-physics");
-    var chemistry = $(this).attr("data-chemistry");
+    var cat = $(this).attr("data-subject");
+    var mouse = $(this).attr("data-subject");
+    var dog = $(this).attr("data-subject");
+    var fish = $(this).attr("data-subject");
 
-    $("button").on("click", function() {
+    $("button").on("click", function () {
         // Grabbing and storing the data-animal property value from the button
         var subject = $(this).attr("data-subject");
 
-    // Constructing a queryURL using the subject name
-    var queryURL = "https://api.giphy.com/vanimal1/gifs/search?q=" +
-        subject + "&api_key=lP1MQYDLbYmyDynRQ563oVNiaQ4IkVFY";
+        // Constructing a queryURL using the subject name
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "api_key=lP1MQYDLbYmyDynRQ563oVNiaQ4IkVFY";
     });
 
     // Performing an AJAX request with the queryURL
@@ -22,7 +21,7 @@ $("button").on("click", function () {
         url: queryURL,
         method: "GET"
     })
-    console.log("works!")
+  
         // After data comes back from the request
         .then(function (response) {
             console.log(queryURL);
@@ -68,6 +67,7 @@ $("button").on("click", function () {
 
             });
         });
+
     // Function for displaying movie data
     function makeBtn() {
 
@@ -90,7 +90,7 @@ $("button").on("click", function () {
     }
 
 
-    $("#gif-input2").on("click", function(event) {
+    $("#gif-input2").on("click", function (event) {
         // Preventing the buttons default behavior when clicked (which is submitting a form)
         event.preventDefault();
         // This line grabs the input from the textbox
@@ -102,9 +102,9 @@ $("button").on("click", function () {
         // Calling renderButtons which handles the processing of our movie array
         makeBtn();
 
-      });
+    });
 
 
 
-    
-    }); 
+
+}); 
