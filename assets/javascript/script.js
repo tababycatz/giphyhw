@@ -1,11 +1,10 @@
 $(document).ready(function () {
 
-
     var topics = ["cat", "mouse", "dog", "hamster"];
 
     // Function for displaying Gif data
     function makeBtn() {
-        // Deleting the movies prior to adding new movies
+        // Deleting the gifs prior to adding new gifs
         // (this is necessary otherwise we will have repeat buttons)
         $("#btnDump").empty();
         // Looping through the array of movies
@@ -20,9 +19,21 @@ $(document).ready(function () {
             $("#btnDump").append(b);
         }
     }
-    makeBtn()
+    // makeBtn();
+    
+    $("#goBtn").on("click", function (event) {
+        // Preventing the buttons default behavior when clicked (which is submitting a form)
+        event.preventDefault();
+        console.log("I was clicked")
+        // This line grabs the input from the textbox
+        var subbie = $("#gif-input").val().trim();
+        // Adding the new input from the textbox to our array
 
+        topics.push(subbie);  
+        makeBtn()
+    });
 
+    makeBtn();
 
     $(document).on("click", ".gifButton", function () {
         // Grabbing and storing the data-subject property value from the button
@@ -76,25 +87,9 @@ $(document).ready(function () {
         });
     });
 
-    $("#gif-input").on("click", function (event) {
-        // Preventing the buttons default behavior when clicked (which is submitting a form)
-        event.preventDefault();
-        console.log("I was clicked")
-        // This line grabs the input from the textbox
-        var subbie = $("#gif-input").val().trim();
-
-        // Adding the new input from the textbox to our array
-        topics.push(subbie);
-
-        makeBtn();
-
-    });
 
     // displays gifs
-    $(document).on('click', ".gif", displayGifs);
+    $(document).on('click', ".gif", makeBtn);
 
-
-    //call on renderbuttons fucntion
-    makeBtn();
 
 })
