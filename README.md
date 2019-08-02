@@ -2,6 +2,9 @@
 
 HW for week #6
 
+## Link to play
+https://tababycatz.github.io/giphyhw/
+
 ### Instructions
 
 1. Before you can make any part of your site work, you need to create an array of strings, each one related to a topic that interests you. Save it to a variable called `topics`.
